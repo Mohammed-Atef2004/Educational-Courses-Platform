@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="EducationalPlatform.Api/EducationalPlatform.Api.csproj" Id="9c67d687-6de4-4ac3-b586-10c6f796ec9d" />
+  <Project Path="EducationalPlatform.Application/EducationalPlatform.Application.csproj" Id="199e6eee-0513-4232-8dac-04ee722b49cd" />
+  <Project Path="EducationalPlatform.Domain/EducationalPlatform.Domain.csproj" Id="eaa31768-ad14-4c29-84ae-71b271ef2850" />
+  <Project Path="EducationalPlatform.Infrastructure/EducationalPlatform.Infrastructure.csproj" Id="818fa418-3a6e-4e72-b999-54b34924d04b" />
+</Solution>
