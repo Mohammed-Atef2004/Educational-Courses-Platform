@@ -1,2 +1,0 @@
-wwwroot\ForgotPasswordEmail.html
-wwwroot\reset-password.html
