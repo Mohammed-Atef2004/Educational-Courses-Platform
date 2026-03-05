@@ -1,18 +1,18 @@
-using EducationalPlatform.Domain.Aggregates.Courses.ValueObjects;
+using EducationalPlatform.Domain.Courses.ValueObjects;
 using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Aggregates.Courses;
+namespace EducationalPlatform.Domain.Courses;
 
-public sealed class Episode : Entity<Guid>
+public sealed class Episode : Entity<EpisodeId>
 {
     public EpisodeName Name  { get; private set; }
     public string Description { get; private set; }
     public string ImageUrl { get; private set; }
     public string VideoLink { get; private set; }
     public int Order { get; private set; }
-    public Guid CourseId { get; private set; }
+    public CourseId CourseId { get; private set; }
 
-    private Episode(Guid id,Guid courseId,EpisodeName name, string description,string imageUrl,string videoLink,int order): base(id)
+    private Episode(EpisodeId id,CourseId courseId,EpisodeName name, string description,string imageUrl,string videoLink,int order): base(id)
     {
         CourseId = courseId;
         Name  = name;
@@ -25,14 +25,14 @@ public sealed class Episode : Entity<Guid>
     private Episode() { }
 
     internal static Result<Episode> Create(
-        Guid   courseId,
+        CourseId courseId,
         string name,
         string description,
         string imageUrl,
         string videoLink,
         int    order)
     {
-        if (courseId == Guid.Empty)
+        if (courseId ==null)
             return Result<Episode>.Failure(CourseErrors.Episode.InvalidCourseId);
 
         var nameResult = EpisodeName.Create(name);
@@ -40,7 +40,7 @@ public sealed class Episode : Entity<Guid>
             return Result<Episode>.Failure(nameResult.Error);
 
         var episode = new Episode(
-            Guid.NewGuid(), courseId, nameResult.Value,
+            EpisodeId.New(), courseId, nameResult.Value,
             description, imageUrl, videoLink, order);
 
         return Result<Episode>.Success(episode);

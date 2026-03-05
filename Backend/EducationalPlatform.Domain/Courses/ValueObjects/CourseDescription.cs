@@ -1,6 +1,7 @@
+using EducationalPlatform.Domain.Courses;
 using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Aggregates.Courses.ValueObjects;
+namespace EducationalPlatform.Domain.Courses.ValueObjects;
 
 public sealed class CourseDescription : ValueObject
 {

@@ -1,6 +1,6 @@
 using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Aggregates.Users.Events;
+namespace EducationalPlatform.Domain.Users.Events;
 
  
 public sealed record UserRegisteredDomainEvent(
@@ -8,6 +8,4 @@ public sealed record UserRegisteredDomainEvent(
     string Email,
     string FullName) : DomainEvent;
 
-public sealed record UserDeactivatedDomainEvent(
-    Guid UserId,
-    string Reason) : DomainEvent;
+

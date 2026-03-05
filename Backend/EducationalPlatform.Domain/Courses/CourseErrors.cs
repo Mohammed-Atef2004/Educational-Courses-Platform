@@ -1,6 +1,6 @@
 using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Aggregates.Courses;
+namespace EducationalPlatform.Domain.Courses;
 
 
 public static class CourseErrors

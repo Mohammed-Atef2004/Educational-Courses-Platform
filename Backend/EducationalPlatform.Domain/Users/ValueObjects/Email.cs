@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using EducationalPlatform.Domain.Aggregates.Users;
 using EducationalPlatform.Domain.SharedKernel;
-namespace EducationalPlatform.Domain.Aggregates.Users.ValueObjects;
+using EducationalPlatform.Domain.Users;
+namespace EducationalPlatform.Domain.Users.ValueObjects;
 
 
 public sealed class Email : ValueObject

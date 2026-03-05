@@ -1,6 +1,6 @@
 using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Aggregates.Users;
+namespace EducationalPlatform.Domain.Users;
 
 
 public static class UserErrors
@@ -43,11 +43,11 @@ public static class UserErrors
 
         public static readonly Error FirstNameTooLong =
             new("User.FullName.FirstNameTooLong",
-                $"First name must not exceed {EducationalPlatform.Domain.Aggregates.Users.ValueObjects.FullName.MaxLength} characters.");
+                $"First name must not exceed {ValueObjects.FullName.MaxLength} characters.");
 
         public static readonly Error LastNameTooLong =
             new("User.FullName.LastNameTooLong",
-                $"Last name must not exceed {EducationalPlatform.Domain.Aggregates.Users.ValueObjects.FullName.MaxLength} characters.");
+                $"Last name must not exceed {ValueObjects.FullName.MaxLength} characters.");
     }
 
     // Business rule violation errors 

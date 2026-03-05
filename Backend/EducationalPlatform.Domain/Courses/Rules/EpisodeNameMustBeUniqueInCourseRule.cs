@@ -1,16 +1,7 @@
+using EducationalPlatform.Domain.Courses;
 using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Aggregates.Courses.Rules;
-
-public sealed class CourseNameMustBeUniqueRule : IBusinessRule
-{
-    private readonly bool _isTaken;
-
-    public CourseNameMustBeUniqueRule(bool isTaken) => _isTaken = isTaken;
-
-    public bool IsBroken() => _isTaken;
-    public Error Error     => CourseErrors.Rules.CourseNameMustBeUnique;
-}
+namespace EducationalPlatform.Domain.Courses.Rules;
 
 
 public sealed class EpisodeNameMustBeUniqueInCourseRule : IBusinessRule

@@ -1,6 +1,6 @@
-using EducationalPlatform.Domain.Aggregates.Users.ValueObjects;
+using EducationalPlatform.Domain.Users.ValueObjects;
 
-namespace EducationalPlatform.Domain.Aggregates.Users;
+namespace EducationalPlatform.Domain.Users;
 
 
 public interface IUserRepository

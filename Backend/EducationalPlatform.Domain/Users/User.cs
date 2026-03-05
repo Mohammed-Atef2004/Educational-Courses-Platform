@@ -1,9 +1,9 @@
-using EducationalPlatform.Domain.Aggregates.Users.ValueObjects;
 using EducationalPlatform.Domain.SharedKernel;
-using EducationalPlatform.Domain.Aggregates.Users.Events;
-using EducationalPlatform.Domain.Aggregates.Users.Rules;
+using EducationalPlatform.Domain.Users.Events;
+using EducationalPlatform.Domain.Users.Rules;
+using EducationalPlatform.Domain.Users.ValueObjects;
 
-namespace EducationalPlatform.Domain.Aggregates.Users;
+namespace EducationalPlatform.Domain.Users;
 
 
 public sealed class User : AggregateRoot<Guid>

@@ -1,4 +1,4 @@
-namespace EducationalPlatform.Domain.Aggregates.Users;
+namespace EducationalPlatform.Domain.Users;
 
 public enum UserRole
 {

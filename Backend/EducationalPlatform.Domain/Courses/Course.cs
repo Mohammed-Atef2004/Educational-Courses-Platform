@@ -1,11 +1,11 @@
-using EducationalPlatform.Domain.Aggregates.Courses.Events;
-using EducationalPlatform.Domain.Aggregates.Courses.Rules;
-using EducationalPlatform.Domain.Aggregates.Courses.ValueObjects;
+using EducationalPlatform.Domain.Courses.Events;
+using EducationalPlatform.Domain.Courses.Rules;
+using EducationalPlatform.Domain.Courses.ValueObjects;
 using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Aggregates.Courses;
+namespace EducationalPlatform.Domain.Courses;
 
-public sealed class Course : AggregateRoot<Guid>
+public sealed class Course : AggregateRoot<CourseId>
 {
    
 
@@ -24,7 +24,7 @@ public sealed class Course : AggregateRoot<Guid>
 
     
 
-    private Course(Guid id,CourseName name,CourseDescription description,Money price,string imageUrl,string videoLink): base(id)
+    private Course(CourseId id,CourseName name,CourseDescription description,Money price,string imageUrl,string videoLink): base(id)
     {
         Name = name;
         Description = description;
@@ -63,7 +63,7 @@ public sealed class Course : AggregateRoot<Guid>
 
         //  Business Rule
         var course = new Course(
-            Guid.NewGuid(),
+            CourseId.New(),
             nameResult.Value,
             descResult.Value,
             priceResult.Value,

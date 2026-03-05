@@ -1,8 +1,8 @@
 using EducationalPlatform.Domain.SharedKernel;
-using EducationalPlatform.Domain.Aggregates.Users;
-using EducationalPlatform.Domain.Aggregates.Users.ValueObjects;
+using EducationalPlatform.Domain.Users.ValueObjects;
+using EducationalPlatform.Domain.Users;
 
-namespace EducationalPlatform.Domain.Aggregates.Users.Rules;
+namespace EducationalPlatform.Domain.Users.Rules;
 
 public sealed class UserEmailMustBeUniqueRule : IBusinessRule
 {
