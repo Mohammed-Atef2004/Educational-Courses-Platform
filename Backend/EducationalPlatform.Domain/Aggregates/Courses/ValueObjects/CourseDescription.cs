@@ -1,33 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EducationalPlatform.Domain.Primitives;
-using EducationalPlatform.Domain.Shared;
-using System.Threading.Tasks;
+using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Aggregates.Courses.ValueObjects
+namespace EducationalPlatform.Domain.Aggregates.Courses.ValueObjects;
+
+public sealed class CourseDescription : ValueObject
 {
-    public sealed class CourseDescription : ValueObject
+    public const int MinLength = 20;
+    public const int MaxLength = 2000;
+
+    public string Value { get; }
+
+    private CourseDescription(string value) => Value = value;
+
+    public static Result<CourseDescription> Create(string? value)
     {
-        public string Value { get; private set; }
+        if (string.IsNullOrWhiteSpace(value))
+            return Result<CourseDescription>.Failure(CourseErrors.Description.Empty);
 
-        private CourseDescription(string value) => Value = value;
+        var trimmed = value.Trim();
 
-        public static Result<CourseDescription> Create(string description)
-        {
-            if (string.IsNullOrWhiteSpace(description))
-                return Result<CourseDescription>.Failure(Error.NullValue);
+        if (trimmed.Length < MinLength)
+            return Result<CourseDescription>.Failure(CourseErrors.Description.TooShort);
 
-            if (description.Length < 20)
-                return Result<CourseDescription>.Failure(CourseErrors.DescriptionTooShort);
+        if (trimmed.Length > MaxLength)
+            return Result<CourseDescription>.Failure(CourseErrors.Description.TooLong);
 
-            return Result<CourseDescription>.Success(new CourseDescription(description));
-        }
-
-        public override IEnumerable<object> GetAtomicValues()
-        {
-            yield return Value;
-        }
+        return Result<CourseDescription>.Success(new CourseDescription(trimmed));
     }
+
+    protected override IEnumerable<object> GetEqualityComponents()
+    {
+        yield return Value;
+    }
+
+    public override string ToString() => Value;
 }

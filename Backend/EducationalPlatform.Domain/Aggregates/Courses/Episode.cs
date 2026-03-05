@@ -1,51 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EducationalPlatform.Domain.Primitives;
-using EducationalPlatform.Domain.Shared;
+using EducationalPlatform.Domain.Aggregates.Courses.ValueObjects;
+using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Aggregates.Courses
+namespace EducationalPlatform.Domain.Aggregates.Courses;
+
+public sealed class Episode : Entity<Guid>
 {
-    public sealed class Episode : Entity
+    public EpisodeName Name  { get; private set; }
+    public string Description { get; private set; }
+    public string ImageUrl { get; private set; }
+    public string VideoLink { get; private set; }
+    public int Order { get; private set; }
+    public Guid CourseId { get; private set; }
+
+    private Episode(Guid id,Guid courseId,EpisodeName name, string description,string imageUrl,string videoLink,int order): base(id)
     {
-       
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public string ImageUrl { get; private set; }
-        public string Link { get; private set; }
+        CourseId = courseId;
+        Name  = name;
+        Description = description;
+        ImageUrl = imageUrl;
+        VideoLink = videoLink;
+        Order = order;
+    }
 
-      
-        public Guid CourseId { get; private set; }
+    private Episode() { }
 
-        private Episode(Guid id, Guid courseId, string name, string description, string imageUrl, string link)
-            : base(id)
-        {
-            CourseId = courseId;
-            Name = name;
-            Description = description;
-            ImageUrl = imageUrl;
-            Link = link;
-        }
+    internal static Result<Episode> Create(
+        Guid   courseId,
+        string name,
+        string description,
+        string imageUrl,
+        string videoLink,
+        int    order)
+    {
+        if (courseId == Guid.Empty)
+            return Result<Episode>.Failure(CourseErrors.Episode.InvalidCourseId);
 
-    
-        public static Result<Episode> Create(
-            Guid courseId,
-            string name,
-            string description,
-            string imageUrl,
-            string link)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-                return Result<Episode>.Failure(CourseErrors.EpisodeEmptyName); 
+        var nameResult = EpisodeName.Create(name);
+        if (nameResult.IsFailure)
+            return Result<Episode>.Failure(nameResult.Error);
 
-            if (courseId == Guid.Empty)
-                return Result<Episode>.Failure(CourseErrors.InvalidCourseId);
+        var episode = new Episode(
+            Guid.NewGuid(), courseId, nameResult.Value,
+            description, imageUrl, videoLink, order);
 
-            var episode = new Episode(Guid.NewGuid(), courseId, name, description, imageUrl, link);
-
-            return Result<Episode>.Success(episode);
-        }
+        return Result<Episode>.Success(episode);
     }
 }

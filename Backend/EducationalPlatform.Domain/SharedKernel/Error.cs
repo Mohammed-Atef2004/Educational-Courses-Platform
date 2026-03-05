@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EducationalPlatform.Domain.SharedKernel; 
+namespace EducationalPlatform.Domain.SharedKernel;
 
 public record Error(string Code, string Message)
 {
-    public static readonly Error None = new("", "");
+    public static readonly Error None = new(string.Empty, string.Empty);
 }

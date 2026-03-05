@@ -10,4 +10,9 @@
     <PackageReference Include="MediatR" Version="14.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Aggregates\Courses\Rules\" />
+    <Folder Include="Aggregates\Courses\ValueObjects\" />
+  </ItemGroup>
+
 </Project>

@@ -2,29 +2,29 @@ using EducationalPlatform.Domain.SharedKernel;
 
 namespace EducationalPlatform.Domain.Aggregates.Courses.ValueObjects;
 
-public sealed class CourseName : ValueObject
+public sealed class EpisodeName : ValueObject
 {
     public const int MinLength = 3;
-    public const int MaxLength = 150;
+    public const int MaxLength = 200;
 
     public string Value { get; }
 
-    private CourseName(string value) => Value = value;
+    private EpisodeName(string value) => Value = value;
 
-    public static Result<CourseName> Create(string? value)
+    public static Result<EpisodeName> Create(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            return Result<CourseName>.Failure(CourseErrors.Name.Empty);
+            return Result<EpisodeName>.Failure(CourseErrors.Episode.NameEmpty);
 
         var trimmed = value.Trim();
 
         if (trimmed.Length < MinLength)
-            return Result<CourseName>.Failure(CourseErrors.Name.TooShort);
+            return Result<EpisodeName>.Failure(CourseErrors.Episode.NameTooShort);
 
         if (trimmed.Length > MaxLength)
-            return Result<CourseName>.Failure(CourseErrors.Name.TooLong);
+            return Result<EpisodeName>.Failure(CourseErrors.Episode.NameTooLong);
 
-        return Result<CourseName>.Success(new CourseName(trimmed));
+        return Result<EpisodeName>.Success(new EpisodeName(trimmed));
     }
 
     protected override IEnumerable<object> GetEqualityComponents()
