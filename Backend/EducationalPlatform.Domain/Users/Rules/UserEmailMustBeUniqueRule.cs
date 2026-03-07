@@ -1,6 +1,6 @@
 using EducationalPlatform.Domain.SharedKernel;
 using EducationalPlatform.Domain.Users.ValueObjects;
-using EducationalPlatform.Domain.Users;
+using EducationalPlatform.Domain.Users.Errors;
 
 namespace EducationalPlatform.Domain.Users.Rules;
 
@@ -12,6 +12,5 @@ public sealed class UserEmailMustBeUniqueRule : IBusinessRule
         => _isEmailTaken = isEmailTaken;
 
     public bool IsBroken() => _isEmailTaken;
-
-    public Error Error => UserErrors.Rules.EmailMustBeUnique;
+    public Error Error => RulesErrors.EmailMustBeUnique;
 }

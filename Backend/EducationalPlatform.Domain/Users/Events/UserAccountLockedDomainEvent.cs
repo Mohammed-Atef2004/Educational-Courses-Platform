@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EducationalPlatform.Domain.Users.Events
 {
-    public sealed record UserDeactivatedDomainEvent(
-       Guid UserId,
-       string Reason) : DomainEvent;
+    public sealed record UserAccountLockedDomainEvent(
+    Guid UserId,
+    DateTime LockedUntil) : DomainEvent;
 }

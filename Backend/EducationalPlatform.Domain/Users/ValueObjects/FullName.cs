@@ -1,5 +1,6 @@
 using EducationalPlatform.Domain.SharedKernel;
-using EducationalPlatform.Domain.Users;
+using EducationalPlatform.Domain.Users.Errors;
+using System.Text.RegularExpressions;
 namespace EducationalPlatform.Domain.Users.ValueObjects;
 
 
@@ -7,32 +8,41 @@ public sealed class FullName : ValueObject
 {
     public const int MaxLength = 100;
 
+    // letters (Unicode), hyphens, apostrophes — no digits or symbols
+    private static readonly Regex NameRegex = new(
+        @"^[\p{L}\s'\-]+$",
+        RegexOptions.Compiled,
+        matchTimeout: TimeSpan.FromMilliseconds(100));
+
     public string FirstName { get; }
-    public string LastName  { get; }
+    public string LastName { get; }
     public string DisplayName => $"{FirstName} {LastName}";
 
     private FullName(string firstName, string lastName)
     {
         FirstName = firstName;
-        LastName  = lastName;
+        LastName = lastName;
     }
 
     public static Result<FullName> Create(string? firstName, string? lastName)
     {
         if (string.IsNullOrWhiteSpace(firstName))
-            return Result<FullName>.Failure(UserErrors.FullName.FirstNameEmpty);
+            return Result<FullName>.Failure(FullNameErrors.FirstNameEmpty);
 
         if (string.IsNullOrWhiteSpace(lastName))
-            return Result<FullName>.Failure(UserErrors.FullName.LastNameEmpty);
+            return Result<FullName>.Failure(FullNameErrors.LastNameEmpty);
 
         var first = firstName.Trim();
-        var last  = lastName.Trim();
+        var last = lastName.Trim();
 
         if (first.Length > MaxLength)
-            return Result<FullName>.Failure(UserErrors.FullName.FirstNameTooLong);
+            return Result<FullName>.Failure(FullNameErrors.FirstNameTooLong);
 
         if (last.Length > MaxLength)
-            return Result<FullName>.Failure(UserErrors.FullName.LastNameTooLong);
+            return Result<FullName>.Failure(FullNameErrors.LastNameTooLong);
+
+        if (!NameRegex.IsMatch(first) || !NameRegex.IsMatch(last))
+            return Result<FullName>.Failure(FullNameErrors.InvalidCharacters);
 
         return Result<FullName>.Success(new FullName(first, last));
     }
@@ -45,3 +55,4 @@ public sealed class FullName : ValueObject
 
     public override string ToString() => DisplayName;
 }
+

@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace EducationalPlatform.Domain.Users.Events
 {
-    public sealed record UserDeactivatedDomainEvent(
-       Guid UserId,
-       string Reason) : DomainEvent;
+    public sealed record UserNameChangedDomainEvent(
+    Guid UserId,
+    string OldDisplayName,
+    string NewDisplayName) : DomainEvent;
 }
