@@ -1,4 +1,4 @@
-﻿namespace EducationalPlatform.Domain.SharedKernel;
+﻿namespace EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 
 public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot
 {

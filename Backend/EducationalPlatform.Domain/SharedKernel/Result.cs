@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EducationalPlatform.Domain.SharedKernel 
+namespace EducationalPlatform.EducationalPlatform.Domain.SharedKernel 
 {
     public class Result
     {

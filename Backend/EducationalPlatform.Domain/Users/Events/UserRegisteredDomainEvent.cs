@@ -1,6 +1,6 @@
-using EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Users.Events;
+namespace  EducationalPlatform.Domain.Users.Events;
 
 
 public sealed record UserRegisteredDomainEvent(

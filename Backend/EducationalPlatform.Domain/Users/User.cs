@@ -1,11 +1,11 @@
-﻿using EducationalPlatform.Domain.SharedKernel;
-using EducationalPlatform.Domain.Users.Errors;
-using EducationalPlatform.Domain.Users.Events;
-using EducationalPlatform.Domain.Users.Rules;
-using EducationalPlatform.Domain.Users.ValueObjects;
-using static EducationalPlatform.Domain.Users.Errors.UserErrors;
+﻿using  EducationalPlatform.Domain.Users.Errors;
+using  EducationalPlatform.Domain.Users.Events;
+using  EducationalPlatform.Domain.Users.Rules;
+using  EducationalPlatform.Domain.Users.ValueObjects;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using static  EducationalPlatform.Domain.Users.Errors.UserErrors;
 
-namespace EducationalPlatform.Domain.Users;
+namespace  EducationalPlatform.Domain.Users;
 
 
 public sealed class User : AggregateRoot<Guid>

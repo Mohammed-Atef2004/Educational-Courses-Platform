@@ -1,12 +1,12 @@
-﻿using EducationalPlatform.Domain.Courses;
-using EducationalPlatform.Domain.SharedKernel;
+﻿using EducationalPlatform.EducationalPlatform.Domain.Courses;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EducationalPlatform.Domain.Courses.Rules
+namespace EducationalPlatform.EducationalPlatform.Domain.Courses.Rules
 {
     public sealed class CourseNameMustBeUniqueRule : IBusinessRule
     {

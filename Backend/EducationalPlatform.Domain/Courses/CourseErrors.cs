@@ -1,6 +1,6 @@
-using EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Courses;
+namespace EducationalPlatform.EducationalPlatform.Domain.Courses;
 
 
 public static class CourseErrors

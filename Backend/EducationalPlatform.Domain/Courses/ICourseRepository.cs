@@ -1,6 +1,6 @@
-using EducationalPlatform.Domain.Courses.ValueObjects;
+using EducationalPlatform.EducationalPlatform.Domain.Courses.ValueObjects;
 
-namespace EducationalPlatform.Domain.Courses;
+namespace EducationalPlatform.EducationalPlatform.Domain.Courses;
 
 public interface ICourseRepository
 {

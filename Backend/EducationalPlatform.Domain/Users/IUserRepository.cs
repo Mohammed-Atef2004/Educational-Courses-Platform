@@ -1,9 +1,10 @@
-﻿using EducationalPlatform.Domain.Users.ValueObjects;
+﻿using EducationalPlatform.Domain.Interfaces.Repositories;
+using  EducationalPlatform.Domain.Users.ValueObjects;
 
-namespace EducationalPlatform.Domain.Users;
+namespace  EducationalPlatform.Domain.Users;
 
 
-public interface IUserRepository
+public interface IUserRepository:IGenericRepository<User>
 {
 
    

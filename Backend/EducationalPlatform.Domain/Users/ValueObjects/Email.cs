@@ -1,7 +1,7 @@
 using System.Text.RegularExpressions;
-using EducationalPlatform.Domain.SharedKernel;
-using EducationalPlatform.Domain.Users.Errors;
-namespace EducationalPlatform.Domain.Users.ValueObjects;
+using  EducationalPlatform.Domain.Users.Errors;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+namespace  EducationalPlatform.Domain.Users.ValueObjects;
 
 
 public sealed class Email : ValueObject
@@ -11,8 +11,9 @@ public sealed class Email : ValueObject
         RegexOptions.Compiled | RegexOptions.IgnoreCase,
         matchTimeout: TimeSpan.FromMilliseconds(250));
 
-    public string Value { get; }
+    public string Value { get; private set; }
 
+    private Email() { }
     private Email(string value) => Value = value;
 
     public static Result<Email> Create(string? value)

@@ -1,5 +1,6 @@
-﻿using EducationalPlatform.Domain.SharedKernel;
-using EducationalPlatform.Domain.Users.Errors;
+﻿
+using  EducationalPlatform.Domain.Users.Errors;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace EducationalPlatform.Domain.Users.ValueObjects
+namespace  EducationalPlatform.Domain.Users.ValueObjects
 {
     public sealed class PhoneNumber : ValueObject
     {
@@ -19,8 +20,9 @@ namespace EducationalPlatform.Domain.Users.ValueObjects
             RegexOptions.Compiled,
             matchTimeout: TimeSpan.FromMilliseconds(100));
 
-        public string Value { get; }
+        public string Value { get; private set; }
 
+        private PhoneNumber(){}
         private PhoneNumber(string value) => Value = value;
 
         public static Result<PhoneNumber> Create(string? value)

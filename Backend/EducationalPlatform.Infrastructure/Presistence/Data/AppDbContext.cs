@@ -1,5 +1,7 @@
 ﻿
-using EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.Users;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Infrastructure.Presistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,7 +13,8 @@ namespace Infrastructure.Presistence.Data
 {
     public class AppDbContext : DbContext
     {
-       
+        public DbSet<AuditLog> AuditLogs { get; set; }
+        public DbSet<User> Users { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }

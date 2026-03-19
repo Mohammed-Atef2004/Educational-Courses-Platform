@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using Domain.Interfaces.Repositories;
+using EducationalPlatform.Domain.Interfaces.Repositories;
 using Infrastructure.Presistence.Data;
 using Microsoft.EntityFrameworkCore;
 

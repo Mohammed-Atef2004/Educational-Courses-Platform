@@ -1,4 +1,4 @@
-﻿namespace EducationalPlatform.Domain.SharedKernel;
+﻿namespace EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 
 public sealed class ValidationResult : Result, IValidationResult
 {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Domain.Interfaces.Repositories;
+namespace EducationalPlatform.Domain.Interfaces.Repositories;
 
 public interface IGenericRepository<T> where T : class
 {

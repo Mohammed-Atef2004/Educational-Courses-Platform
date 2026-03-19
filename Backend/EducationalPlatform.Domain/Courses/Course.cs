@@ -1,9 +1,9 @@
-using EducationalPlatform.Domain.Courses.Events;
-using EducationalPlatform.Domain.Courses.Rules;
-using EducationalPlatform.Domain.Courses.ValueObjects;
-using EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.EducationalPlatform.Domain.Courses.Events;
+using EducationalPlatform.EducationalPlatform.Domain.Courses.Rules;
+using EducationalPlatform.EducationalPlatform.Domain.Courses.ValueObjects;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Courses;
+namespace EducationalPlatform.EducationalPlatform.Domain.Courses;
 
 public sealed class Course : AggregateRoot<CourseId>
 {

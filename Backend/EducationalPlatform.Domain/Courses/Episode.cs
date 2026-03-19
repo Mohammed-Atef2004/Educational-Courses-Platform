@@ -1,7 +1,7 @@
-using EducationalPlatform.Domain.Courses.ValueObjects;
-using EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.EducationalPlatform.Domain.Courses.ValueObjects;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Courses;
+namespace EducationalPlatform.EducationalPlatform.Domain.Courses;
 
 public sealed class Episode : Entity<EpisodeId>
 {

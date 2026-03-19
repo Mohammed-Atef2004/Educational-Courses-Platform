@@ -1,7 +1,7 @@
-using EducationalPlatform.Domain.SharedKernel;
-using EducationalPlatform.Domain.Users.ValueObjects;
+using  EducationalPlatform.Domain.Users.ValueObjects;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.Domain.Users.Errors;
+namespace  EducationalPlatform.Domain.Users.Errors;
 
 public static class UserErrors
 {
@@ -58,6 +58,10 @@ public static class UserErrors
         public static readonly Error PasswordAlreadyUsed =
             new("User.Security.PasswordAlreadyUsed",
                 "This password was used recently. Please choose a different password.");
+        public static readonly Error InvalidEmailToken
+            = new("User.Security.InvalidEmailToken", "The provided email token is invalid or expired.");
+        public static readonly Error InvalidTotpCode
+            = new("User.Security.InvalidTotpCode", "The provided TotpCode is Invalid");
     }
 
 }

@@ -1,7 +1,8 @@
-using EducationalPlatform.Domain.SharedKernel;
-using EducationalPlatform.Domain.Users.Errors;
+
+using  EducationalPlatform.Domain.Users.Errors;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 using System.Text.RegularExpressions;
-namespace EducationalPlatform.Domain.Users.ValueObjects;
+namespace  EducationalPlatform.Domain.Users.ValueObjects;
 
 
 public sealed class FullName : ValueObject
@@ -14,10 +15,11 @@ public sealed class FullName : ValueObject
         RegexOptions.Compiled,
         matchTimeout: TimeSpan.FromMilliseconds(100));
 
-    public string FirstName { get; }
-    public string LastName { get; }
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
     public string DisplayName => $"{FirstName} {LastName}";
 
+    private FullName() { }
     private FullName(string firstName, string lastName)
     {
         FirstName = firstName;

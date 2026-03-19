@@ -1,12 +1,12 @@
-﻿using EducationalPlatform.Domain.SharedKernel;
-using EducationalPlatform.Domain.Users.ValueObjects;
+﻿using  EducationalPlatform.Domain.Users.ValueObjects;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EducationalPlatform.Domain.Users.Errors
+namespace  EducationalPlatform.Domain.Users.Errors
 {
     public static class UsernameErrors
     {

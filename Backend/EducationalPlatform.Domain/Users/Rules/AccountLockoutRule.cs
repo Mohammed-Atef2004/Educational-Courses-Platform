@@ -1,13 +1,13 @@
-﻿using EducationalPlatform.Domain.SharedKernel;
-using EducationalPlatform.Domain.Users.Errors;
+﻿using  EducationalPlatform.Domain.Users.Errors;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static EducationalPlatform.Domain.Users.Errors.UserErrors;
+using static  EducationalPlatform.Domain.Users.Errors.UserErrors;
 
-namespace EducationalPlatform.Domain.Users.Rules
+namespace  EducationalPlatform.Domain.Users.Rules
 {
     public sealed class AccountLockoutRule : IBusinessRule
     {

@@ -1,13 +1,13 @@
-﻿using EducationalPlatform.Domain.Courses.ValueObjects;
-using EducationalPlatform.Domain.SharedKernel;
+﻿using EducationalPlatform.EducationalPlatform.Domain.Courses.ValueObjects;
+using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static EducationalPlatform.Domain.Courses.CourseErrors;
+using static EducationalPlatform.EducationalPlatform.Domain.Courses.CourseErrors;
 
-namespace EducationalPlatform.Domain.Courses.Events
+namespace EducationalPlatform.EducationalPlatform.Domain.Courses.Events
 {
 
     public sealed record EpisodeAddedDomainEvent(
