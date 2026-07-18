@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EducationalPlatform.EducationalPlatform.Domain.SharedKernel
+namespace EducationalPlatform.Domain.SharedKernel
 {
 
     public abstract record DomainEvent:INotification

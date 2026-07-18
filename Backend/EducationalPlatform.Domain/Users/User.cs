@@ -2,7 +2,7 @@
 using  EducationalPlatform.Domain.Users.Events;
 using  EducationalPlatform.Domain.Users.Rules;
 using  EducationalPlatform.Domain.Users.ValueObjects;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.SharedKernel;
 using static  EducationalPlatform.Domain.Users.Errors.UserErrors;
 
 namespace  EducationalPlatform.Domain.Users;

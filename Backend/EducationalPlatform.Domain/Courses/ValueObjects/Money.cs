@@ -1,7 +1,7 @@
-using EducationalPlatform.EducationalPlatform.Domain.Courses;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.Courses;
+using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.EducationalPlatform.Domain.Courses.ValueObjects;
+namespace EducationalPlatform.Domain.Courses.ValueObjects;
 
 public sealed class Money : ValueObject
 {

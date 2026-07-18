@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.SharedKernel;
 using Domain.Interfaces.Services;
 
 namespace EducationalPlatform.Application.Features.Users.Commands.Admin.Deactivate

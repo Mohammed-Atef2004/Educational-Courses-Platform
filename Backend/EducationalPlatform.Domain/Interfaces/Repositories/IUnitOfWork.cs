@@ -1,5 +1,5 @@
 ﻿using EducationalPlatform.Domain.Users;
-using EducationalPlatform.EducationalPlatform.Domain.Courses;
+using EducationalPlatform.Domain.Courses;
 
 namespace EducationalPlatform.Domain.Interfaces.Repositories
 {

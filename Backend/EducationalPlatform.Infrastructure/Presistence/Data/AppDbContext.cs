@@ -1,6 +1,6 @@
 ﻿
 using EducationalPlatform.Domain.Users;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.SharedKernel;
 using EducationalPlatform.Infrastructure.Presistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;

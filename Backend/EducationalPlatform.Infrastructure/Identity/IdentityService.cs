@@ -1,7 +1,7 @@
 ﻿using Domain.Interfaces.Services;
 using EducationalPlatform.Domain.Users;
 using EducationalPlatform.Domain.Users.Errors;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.SharedKernel;
 using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Identity;

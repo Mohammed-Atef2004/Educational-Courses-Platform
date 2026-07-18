@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EducationalPlatform.EducationalPlatform.Domain.Courses.ValueObjects
+namespace EducationalPlatform.Domain.Courses.ValueObjects
 {
     public sealed record CourseId(Guid Value)
     {

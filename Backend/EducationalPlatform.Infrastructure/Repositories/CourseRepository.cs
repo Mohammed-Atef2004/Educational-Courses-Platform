@@ -1,4 +1,4 @@
-﻿using EducationalPlatform.EducationalPlatform.Domain.Courses;
+﻿using EducationalPlatform.Domain.Courses;
 using Infrastructure.Presistence.Data;
 using Infrastructure.Repositories.Shared;
 using System;

@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 using  EducationalPlatform.Domain.Users.Errors;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.SharedKernel;
 namespace  EducationalPlatform.Domain.Users.ValueObjects;
 
 

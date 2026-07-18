@@ -8,7 +8,9 @@ using System.Threading.Tasks;
 
 namespace EducationalPlatform.Domain.Courses.Events
 {
-    public sealed record CoursePublishedDomainEvent(
-    CourseId CourseId,
-    string CourseName) : DomainEvent;
+    public sealed record CourseArchivedDomainEvent
+    (
+        CourseId CourseId
+    ) : DomainEvent;
+    
 }
