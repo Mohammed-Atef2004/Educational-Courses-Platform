@@ -1,4 +1,4 @@
-﻿namespace EducationalPlatform.EducationalPlatform.Domain.SharedKernel
+﻿namespace EducationalPlatform.Domain.SharedKernel
 {
     public abstract class ValueObject
     {

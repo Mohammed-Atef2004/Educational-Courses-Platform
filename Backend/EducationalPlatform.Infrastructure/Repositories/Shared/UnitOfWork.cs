@@ -1,6 +1,6 @@
 ﻿using Domain.Users;
 using EducationalPlatform.Domain.Interfaces.Repositories;
-using EducationalPlatform.EducationalPlatform.Domain.Courses;
+using EducationalPlatform.Domain.Courses;
 using EducationalPlatform.Infrastructure.Repositories;
 using Infrastructure.Presistence.Data;
 

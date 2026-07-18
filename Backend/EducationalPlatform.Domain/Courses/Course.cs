@@ -1,14 +1,15 @@
-using EducationalPlatform.EducationalPlatform.Domain.Courses.Events;
-using EducationalPlatform.EducationalPlatform.Domain.Courses.Rules;
-using EducationalPlatform.EducationalPlatform.Domain.Courses.ValueObjects;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.Courses.Enums;
+using EducationalPlatform.Domain.Courses.Events;
+using EducationalPlatform.Domain.Courses.Rules;
+using EducationalPlatform.Domain.Courses.ValueObjects;
+using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.EducationalPlatform.Domain.Courses;
+namespace EducationalPlatform.Domain.Courses;
 
 public sealed class Course : AggregateRoot<CourseId>
 {
    
-
+    public Guid InstructorId { get; private set; } 
     public CourseName Name { get; private set; }
     public CourseDescription Description { get; private set; }
     public Money Price { get; private set; }
@@ -16,73 +17,78 @@ public sealed class Course : AggregateRoot<CourseId>
     public string ImageUrl  { get; private set; }
     public string VideoLink { get; private set; }
 
-    public bool IsPublished  { get; private set; }
+    public CourseStatus CourseStatus  { get; private set; }
     public DateTime? PublishedAt  { get; private set; }
+    public DateTime ArchivedAt { get; private set; } 
 
     public IReadOnlyCollection<Episode> Episodes => _episodes.AsReadOnly();
     private readonly List<Episode> _episodes = new();
 
     
 
-    private Course(CourseId id,CourseName name,CourseDescription description,Money price,string imageUrl,string videoLink): base(id)
+    private Course(CourseId id,Guid instructorId,CourseName name,CourseDescription description,Money price,string imageUrl,string videoLink): base(id)
     {
+        InstructorId = instructorId;
         Name = name;
         Description = description;
         Price = price;
         ImageUrl = imageUrl;
         VideoLink = videoLink;
-        IsPublished = false;
+        CourseStatus = CourseStatus.Draft;
     }
 
   
     private Course() { }
 
-    public static Result<Course> Create(
-        string name,
-        string description,
-        decimal price,
-        string currency,
-        string imageUrl,
-        string videoLink,
-        bool isNameTaken)
-    {
-        //  Name 
-        var nameResult = CourseName.Create(name);
-        if (nameResult.IsFailure)
-            return Result<Course>.Failure(nameResult.Error);
+        public static Result<Course> Create(
+            string name,
+            Guid InstructorId,
+            string description,
+            decimal price,
+            string currency,
+            string imageUrl,
+            string videoLink,
+            bool isNameTaken)
+        {
+            //  Name 
+            var nameResult = CourseName.Create(name);
+            if (nameResult.IsFailure)
+                return Result<Course>.Failure(nameResult.Error);
 
-        //  Description 
-        var descResult = CourseDescription.Create(description);
-        if (descResult.IsFailure)
-            return Result<Course>.Failure(descResult.Error);
+            //  Description 
+            var descResult = CourseDescription.Create(description);
+            if (descResult.IsFailure)
+                return Result<Course>.Failure(descResult.Error);
 
-        //  Money 
-        var priceResult = Money.Create(price, currency);
-        if (priceResult.IsFailure)
-            return Result<Course>.Failure(priceResult.Error);
+            //  Money 
+            var priceResult = Money.Create(price, currency);
+            if (priceResult.IsFailure)
+                return Result<Course>.Failure(priceResult.Error);
 
-        //  Business Rule
-        var course = new Course(
-            CourseId.New(),
-            nameResult.Value,
-            descResult.Value,
-            priceResult.Value,
-            imageUrl,
-            videoLink);
+            //  Business Rule
+            var course = new Course(
+                CourseId.New(),
+                InstructorId,
+                nameResult.Value,
+                descResult.Value,
+                priceResult.Value,
+                imageUrl,
+                videoLink);
 
-        var ruleResult = course.CheckRule(new CourseNameMustBeUniqueRule(isNameTaken));
-        if (ruleResult.IsFailure)
-            return Result<Course>.Failure(ruleResult.Error);
+            var ruleResult = course.CheckRule(new CourseNameMustBeUniqueRule(isNameTaken));
+            if (ruleResult.IsFailure)
+                return Result<Course>.Failure(ruleResult.Error);
 
-        //  Domain event
-        course.AddDomainEvent(new CourseCreatedDomainEvent(
-            course.Id,
-            course.Name.Value,
-            course.Price.Amount,
-            course.Price.Currency));
+            //  Domain event
+            course.AddDomainEvent(new CourseCreatedDomainEvent(
+                course.Id,
+                course.InstructorId,
+                course.Name.Value,
+                course.Price.Amount,
+                course.Price.Currency));
 
-        return Result<Course>.Success(course);
-    }
+            return Result<Course>.Success(course);
+        }
 
   
     public Result AddEpisode(
@@ -91,6 +97,10 @@ public sealed class Course : AggregateRoot<CourseId>
         string imageUrl,
         string videoLink)
     {
+
+        if (CourseStatus == CourseStatus.Archived)
+            return Result.Failure(CourseErrors.ArchivedCourseCannotBeUpdated);
+
         // duplicate episode name within this course
         var isDuplicate = _episodes.Any(e =>
             string.Equals(e.Name.Value, name?.Trim(), StringComparison.OrdinalIgnoreCase));
@@ -99,7 +109,7 @@ public sealed class Course : AggregateRoot<CourseId>
         if (ruleResult.IsFailure)
             return Result.Failure(ruleResult.Error);
 
-        var order  = _episodes.Count + 1;
+        var order = _episodes.Any() ? _episodes.Max(e => e.Order) + 1 : 1;  
         var episodeResult = Episode.Create(Id, name, description, imageUrl, videoLink, order);
         if (episodeResult.IsFailure)
             return Result.Failure(episodeResult.Error);
@@ -114,6 +124,9 @@ public sealed class Course : AggregateRoot<CourseId>
 
     public Result UpdatePrice(decimal newAmount, string currency)
     {
+        if(CourseStatus == CourseStatus.Archived)
+            return Result.Failure(CourseErrors.ArchivedCourseCannotBeUpdated);  
+
         var priceResult = Money.Create(newAmount, currency);
         if (priceResult.IsFailure)
             return Result.Failure(priceResult.Error);
@@ -129,7 +142,7 @@ public sealed class Course : AggregateRoot<CourseId>
 
     public Result Publish()
     {
-        if (IsPublished)
+        if (CourseStatus == CourseStatus.Published)
             return Result.Failure(CourseErrors.AlreadyPublished);
 
         if (!_episodes.Any())
@@ -137,10 +150,22 @@ public sealed class Course : AggregateRoot<CourseId>
                 "Course.Publish.NoEpisodes",
                 "Cannot publish a course with no episodes."));
 
-        IsPublished = true;
+        CourseStatus = CourseStatus.Published;
         PublishedAt = DateTime.UtcNow;
 
         AddDomainEvent(new CoursePublishedDomainEvent(Id, Name.Value));
+        return Result.Success();
+    }
+
+    public Result CourseArchived()
+    {
+        if (CourseStatus == CourseStatus.Archived)
+            return Result.Failure(CourseErrors.AlreadyArchived);
+
+        CourseStatus = CourseStatus.Archived;
+        ArchivedAt = DateTime.UtcNow;
+
+        AddDomainEvent(new CourseArchivedDomainEvent(Id));
         return Result.Success();
     }
 }

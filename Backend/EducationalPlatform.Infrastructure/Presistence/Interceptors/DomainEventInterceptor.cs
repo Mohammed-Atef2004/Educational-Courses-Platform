@@ -1,4 +1,4 @@
-﻿using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+﻿using EducationalPlatform.Domain.SharedKernel;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;

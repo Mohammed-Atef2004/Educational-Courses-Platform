@@ -1,7 +1,7 @@
-using EducationalPlatform.EducationalPlatform.Domain.Courses.ValueObjects;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.Courses.ValueObjects;
+using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.EducationalPlatform.Domain.Courses;
+namespace EducationalPlatform.Domain.Courses;
 
 public sealed class Episode : Entity<EpisodeId>
 {
@@ -9,6 +9,11 @@ public sealed class Episode : Entity<EpisodeId>
     public string Description { get; private set; }
     public string ImageUrl { get; private set; }
     public string VideoLink { get; private set; }
+
+    //  these 2 properties are not set in the constructor, they can be set later
+    public bool IsFreePreview { get; private set; }
+    public int DurationInSeconds { get; private set; }
+    //------------------------------------------------------------------------
     public int Order { get; private set; }
     public CourseId CourseId { get; private set; }
 

@@ -1,5 +1,5 @@
 ﻿using  EducationalPlatform.Domain.Users.Errors;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

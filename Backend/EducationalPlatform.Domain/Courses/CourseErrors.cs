@@ -1,6 +1,6 @@
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.EducationalPlatform.Domain.Courses;
+namespace EducationalPlatform.Domain.Courses;
 
 
 public static class CourseErrors
@@ -11,6 +11,12 @@ public static class CourseErrors
 
     public static readonly Error AlreadyPublished =
         new("Course.AlreadyPublished", "The course has already been published.");
+
+    public static readonly Error AlreadyArchived =
+        new("Course.AlreadyArchived", "The course has already been archived.");
+
+    public static readonly Error ArchivedCourseCannotBeUpdated =
+       new("Course.ArchivedCourseCannotBeUpdated", "An archived course cannot be updated.");
 
     public static readonly Error NotPublished =
         new("Course.NotPublished", "The course must be published before enrollment.");

@@ -1,7 +1,7 @@
-using EducationalPlatform.EducationalPlatform.Domain.Courses;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.Courses;
+using EducationalPlatform.Domain.SharedKernel;
 
-namespace EducationalPlatform.EducationalPlatform.Domain.Courses.Rules;
+namespace EducationalPlatform.Domain.Courses.Rules;
 
 
 public sealed class EpisodeNameMustBeUniqueInCourseRule : IBusinessRule

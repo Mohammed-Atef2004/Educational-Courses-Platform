@@ -1,5 +1,5 @@
 ﻿using EducationalPlatform.Domain.Users;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.SharedKernel;
 using MediatR;
 using System;
 using System.Collections.Generic;

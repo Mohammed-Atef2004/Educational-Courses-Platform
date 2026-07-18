@@ -1,4 +1,4 @@
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.SharedKernel;
 
 namespace  EducationalPlatform.Domain.Users.Events;
 

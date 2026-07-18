@@ -1,6 +1,6 @@
 ﻿using Domain.Users;
 using EducationalPlatform.Domain.Users;
-using EducationalPlatform.EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.SharedKernel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
