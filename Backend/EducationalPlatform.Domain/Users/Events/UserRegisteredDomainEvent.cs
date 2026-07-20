@@ -8,5 +8,17 @@ public sealed record UserRegisteredDomainEvent(
     string Email,
     string FullName,
     string Username,
-    UserRole Role) : DomainEvent;
+    UserRole Role) : DomainEvent
+{
+    private Guid id;
+    private string value;
+    private string displayName;
+
+    public UserRegisteredDomainEvent(Guid id, string value, string displayName)
+    {
+        this.id = id;
+        this.value = value;
+        this.displayName = displayName;
+    }
+}
 

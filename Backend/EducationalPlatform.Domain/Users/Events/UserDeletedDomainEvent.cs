@@ -10,5 +10,13 @@ namespace  EducationalPlatform.Domain.Users.Events
     public sealed record UserDeletedDomainEvent(
     Guid UserId,
     string Email,
-    string Reason) : DomainEvent;
+    string Reason) : DomainEvent
+    {
+        private Guid id;
+
+        public UserDeletedDomainEvent(Guid id)
+        {
+            this.id = id;
+        }
+    }
 }
