@@ -1,6 +1,7 @@
 ﻿
-using EducationalPlatform.Domain.Users;
+using EducationalPlatform.Domain.Courses;
 using EducationalPlatform.Domain.SharedKernel;
+using EducationalPlatform.Domain.Users;
 using EducationalPlatform.Infrastructure.Presistence.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -15,6 +16,7 @@ namespace Infrastructure.Presistence.Data
     {
         public DbSet<AuditLog> AuditLogs { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Course> Courses { get; set; }
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }

@@ -14,4 +14,8 @@
     <ProjectReference Include="..\EducationalPlatform.Domain\EducationalPlatform.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Courses\Commands\UpdateCourse\" />
+  </ItemGroup>
+
 </Project>

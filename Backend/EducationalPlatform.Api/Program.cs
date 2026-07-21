@@ -1,44 +1,51 @@
-
-
+using Domain.Users;
+using EducationalPlatform.Application.Features.Courses.Commands.CreateCourse;
+using EducationalPlatform.Domain.Courses;
+using EducationalPlatform.Domain.Interfaces.Repositories;
+using EducationalPlatform.Infrastructure.Repositories;
+using FastEndpoints;
+using FastEndpoints.Swagger;
 using Infrastructure.Presistence.Data;
+using Infrastructure.Repositories;
+using Infrastructure.Repositories.Shared;
 using Microsoft.EntityFrameworkCore;
+using EducationalPlatform.Infrastructure;
 
-namespace EducationalPlatform.Api
+namespace EducationalPlatform.Api;
+
+public class Program
 {
-    public class Program
+    public static void Main(string[] args)
     {
-        public static void Main(string[] args)
+        var builder = WebApplication.CreateBuilder(args);
+
+        // Database
+        builder.Services.AddDbContext<AppDbContext>(options =>
+            options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+        builder.Services.AddInfrastructure();
+
+        //FastEndpoints & Swagger
+        builder.Services.AddFastEndpoints();
+        builder.Services.SwaggerDocument(o =>
         {
-            var builder = WebApplication.CreateBuilder(args);
+            o.ShortSchemaNames = true;
+        });
 
-            // Add services to the container.
+        builder.Services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(typeof(CreateCourseCommand).Assembly));
 
-            builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<AppDbContext>(options =>
-            {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-            });
+        var app = builder.Build();
 
-            var app = builder.Build();
+        app.UseHttpsRedirection();
 
-            // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
-                app.UseSwagger();
-                app.UseSwaggerUI();
-            }
+        app.UseFastEndpoints();
 
-            app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
-            app.MapControllers();
-
-            app.Run();
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwaggerGen(); 
         }
+
+        app.Run();
     }
 }
