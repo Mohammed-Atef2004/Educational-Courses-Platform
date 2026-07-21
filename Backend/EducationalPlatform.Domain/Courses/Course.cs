@@ -47,8 +47,8 @@ public sealed class Course : AggregateRoot<CourseId>
             decimal price,
             string currency,
             string imageUrl,
-            string videoLink,
-            bool isNameTaken)
+            string videoLink
+            )
         {
             //  Name 
             var nameResult = CourseName.Create(name);
@@ -75,9 +75,7 @@ public sealed class Course : AggregateRoot<CourseId>
                 imageUrl,
                 videoLink);
 
-            var ruleResult = course.CheckRule(new CourseNameMustBeUniqueRule(isNameTaken));
-            if (ruleResult.IsFailure)
-                return Result<Course>.Failure(ruleResult.Error);
+          
 
             //  Domain event
             course.AddDomainEvent(new CourseCreatedDomainEvent(
